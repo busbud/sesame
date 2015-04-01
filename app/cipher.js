@@ -34,6 +34,8 @@ function streamToBuffer(stream) {
   });
 }
 
+// Encrypt a Buffer of data using inputKey.
+// Returns a Promise of [salt, ciphertext], both Buffers.
 exports.encrypt = function(inputKey, data) {
   var salt = crypto.randomBytesAsync(SALT_SIZE);
 
@@ -51,6 +53,8 @@ exports.encrypt = function(inputKey, data) {
   return Promise.join(salt, encryptData);
 };
 
+// Decrypt a Buffer of data using inputKey and salt Buffer.
+// Returns a Promise of plaintext Buffer.
 exports.decrypt = function(inputKey, salt, data) {
   var derive = deriveKeyIV(inputKey, salt);
 
