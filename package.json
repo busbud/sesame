@@ -2,8 +2,8 @@
   "name": "sesame",
   "version": "0.0.0",
   "description": "Sensitive data storage service",
-  "main": "app.js",
   "scripts": {
+    "start": "node app",
     "test": "mocha"
   },
   "repository": {
