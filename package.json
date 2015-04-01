@@ -1,0 +1,37 @@
+{
+  "name": "sesame",
+  "version": "0.0.0",
+  "description": "Sensitive data storage service",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/busbud/sesame.git"
+  },
+  "keywords": [
+    "sensitive",
+    "data",
+    "storage",
+    "service",
+    "rest",
+    "api",
+    "secure"
+  ],
+  "author": "Busbud <devs@busbud.com> (https://www.busbud.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/busbud/sesame/issues"
+  },
+  "homepage": "https://github.com/busbud/sesame",
+  "dependencies": {
+    "bluebird": "^2.9.21",
+    "pg": "^4.3.0",
+    "ramda": "^0.13.0",
+    "restify": "^3.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  }
+}
