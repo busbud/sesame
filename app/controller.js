@@ -52,6 +52,7 @@ exports.get = [
     vault.read(config.databaseURL, req.params.id)
       .then(function(row) {
         if (!row) throw new restify.ResourceNotFoundError('Resource not found');
+        res.header('Cache-Control', 'private');
         res.header('Last-Modified', row.updatedAt);
         req.row = row;
       })
