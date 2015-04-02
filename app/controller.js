@@ -18,12 +18,12 @@ exports.validateID = function(req, res, next) {
 };
 
 exports.post = function(req, res, next) {
-  if (!req.body || !req.body.data) {
+  if (!req.params.data) {
     return next(new restify.InvalidContentError('No data'));
   }
 
   var encryptionKey = config.encryptionKeys[0];
-  var data = new Buffer(req.body.data, 'utf8');
+  var data = new Buffer(req.params.data, 'utf8');
 
   var encrypt = cipher.encrypt(encryptionKey.key, data);
 
@@ -65,12 +65,12 @@ exports.get = function(req, res, next) {
 };
 
 exports.put = function(req, res, next) {
-  if (!req.body || !req.body.data) {
+  if (!req.params.data) {
     return next(new restify.InvalidContentError('No data'));
   }
 
   var encryptionKey = config.encryptionKeys[0];
-  var data = new Buffer(req.body.data, 'utf8');
+  var data = new Buffer(req.params.data, 'utf8');
 
   var encrypt = cipher.encrypt(encryptionKey.key, data);
 
