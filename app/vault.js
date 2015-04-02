@@ -42,7 +42,7 @@ var READ_SQL = [
   'UPDATE vault',
   'SET accessed_at = now()',
   'WHERE id = $1',
-  'RETURNING id, key_id AS "keyID", salt, data'
+  'RETURNING id, key_id AS "keyID", salt, data, updated_at AS "updatedAt"'
 ].join(' ');
 exports.read = function(connectionString, id) {
   return Promise.using(getConnection(connectionString), function(client) {

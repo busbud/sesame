@@ -36,9 +36,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.post('/vault', controller.post);
-app.get('/vault/:id', controller.validateID, controller.get);
-app.put('/vault/:id', controller.validateID, controller.put);
-app.del('/vault/:id', controller.validateID, controller.delete);
+app.get('/vault/:id', controller.get);
+app.put('/vault/:id', controller.put);
+app.del('/vault/:id', controller.delete);
 
 if (require.main === module) {
   app.listen(config.port, function() {
