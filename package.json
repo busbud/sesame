@@ -4,7 +4,8 @@
   "description": "Sensitive data storage service",
   "scripts": {
     "start": "node app",
-    "test": "mocha"
+    "test": "mocha",
+    "rotate": "node scripts/rotate"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   "dependencies": {
     "bluebird": "^2.9.21",
     "pg": "^4.3.0",
+    "pg-cursor": "^1.0.0",
     "ramda": "^0.13.0",
     "restify": "^3.0.1"
   },
