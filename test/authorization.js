@@ -13,7 +13,7 @@ describe('Authorization middleware', function() {
   before(function(done) {
     this.app = restify.createServer();
     this.app.use(restify.authorizationParser());
-    this.app.use(authorization({'key': 'user'}));
+    this.app.use(authorization({'user': 'key'}));
     this.app.get('/', function(req, res, next) {
       res.send('test');
       next();

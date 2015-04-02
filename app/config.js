@@ -15,7 +15,7 @@ exports.baseURI = 'http://localhost:6666';
 // order.
 exports.encryptionKeys = [];
 
-// Dictionary of UUID API keys to lower-cased client names.
+// Dictionary of lower-cased client names to API keys.
 exports.apiKeys = {};
 
 // Load configuration from a plain object.
@@ -56,9 +56,8 @@ exports.loadEnvironment = function(env) {
   if (apiKeyVars.length) {
     obj.apiKeys = {};
     R.forEach(function(envVar) {
-      var key = env[envVar];
       var client = R.toLower(R.substringFrom(8, envVar));
-      obj.apiKeys[key] = client;
+      obj.apiKeys[client] = env[envVar];
     }, apiKeyVars);
   }
 

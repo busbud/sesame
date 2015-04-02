@@ -7,8 +7,8 @@ module.exports = function(apiKeys) {
     var authorized =
       req.authorization &&
       req.authorization.basic &&
-      apiKeys.hasOwnProperty(req.authorization.basic.password) &&
-      req.authorization.basic.username === apiKeys[req.authorization.basic.password];
+      apiKeys.hasOwnProperty(req.authorization.basic.username) &&
+      req.authorization.basic.password === apiKeys[req.authorization.basic.username];
 
     if (authorized) return next();
     next(new restify.UnauthorizedError('Invalid API key'));

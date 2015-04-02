@@ -32,8 +32,8 @@ describe('Configuration', function() {
           API_KEY_CLIENT_B: 'b'
         });
 
-        assert.equal(config.apiKeys.a, 'client_a');
-        assert.equal(config.apiKeys.b, 'client_b');
+        assert.equal(config.apiKeys.client_a, 'a');
+        assert.equal(config.apiKeys.client_b, 'b');
       });
     });
   });
