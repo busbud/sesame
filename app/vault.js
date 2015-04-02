@@ -13,8 +13,8 @@ function getConnection(connectionString) {
       dispose = done;
       return client;
     })
-    .disposer(function() {
-      if (dispose) dispose();
+    .disposer(function(client) {
+      if (dispose) dispose(client);
     });
 }
 exports.getConnection = getConnection;
