@@ -8,7 +8,7 @@ Promise.promisifyAll(crypto);
 var ALGORITHM = 'aes256';
 var KEY_SIZE = 32;
 var SALT_SIZE = 16;
-var ITERATIONS = 12000;
+var ITERATIONS = 25000;
 
 // Derive a key and IV from inputKey and salt.
 function deriveKeyIV(inputKey, salt) {
