@@ -17,6 +17,7 @@ function getConnection(connectionString) {
       if (dispose) dispose();
     });
 }
+exports.getConnection = getConnection;
 
 // Create a vault entry and return its ID.
 var CREATE_SQL = [
@@ -26,7 +27,11 @@ var CREATE_SQL = [
 ].join(' ');
 exports.create = function(connectionString, keyID, salt, data) {
   return Promise.using(getConnection(connectionString), function(client) {
-    return client.queryAsync(CREATE_SQL, [keyID, salt, data]);
+    return client.queryAsync({
+      name: 'vault_create',
+      text: CREATE_SQL,
+      values: [keyID, salt, data]
+    });
   }).then(function(result) {
     return result.rows[0].id;
   });
@@ -41,7 +46,11 @@ var READ_SQL = [
 ].join(' ');
 exports.read = function(connectionString, id) {
   return Promise.using(getConnection(connectionString), function(client) {
-    return client.queryAsync(READ_SQL, [id]);
+    return client.queryAsync({
+      name: 'vault_read',
+      text: READ_SQL,
+      values: [id]
+    });
   }).then(function(result) {
     if (result.rowCount === 0) return null;
     return result.rows[0];
@@ -56,7 +65,11 @@ var UPDATE_SQL = [
 ].join(' ');
 exports.update = function(connectionString, id, keyID, salt, data) {
   return Promise.using(getConnection(connectionString), function(client) {
-    return client.queryAsync(UPDATE_SQL, [id, keyID, salt, data]);
+    return client.queryAsync({
+      name: 'vault_update',
+      text: UPDATE_SQL,
+      values: [id, keyID, salt, data]
+    });
   }).then(function(result) {
     return (result.rowCount === 1);
   });
@@ -69,7 +82,11 @@ var DELETE_SQL = [
 ].join(' ');
 exports.delete = function(connectionString, id) {
   return Promise.using(getConnection(connectionString), function(client) {
-    return client.queryAsync(DELETE_SQL, [id]);
+    return client.queryAsync({
+      name: 'vault_delete',
+      text: DELETE_SQL,
+      values: [id]
+    });
   }).then(function(result) {
     return (result.rowCount === 1);
   });
