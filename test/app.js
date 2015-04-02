@@ -137,6 +137,38 @@ describe('App', function() {
           .then(this.client.delAsync.bind(this.client));
       });
     });
+
+    describe('with old encryption key', function() {
+      before(function() {
+        return this.createRequest = this.client.postAsync('/vault', {data: 'test'});
+      });
+
+      before(function() {
+        config.encryptionKeys.unshift({id: 't3', key: 'keyboardcat'});
+      });
+
+      it('succeeds', function() {
+        return this.request = this.createRequest.get(2)
+          .then(this.client.getAsync.bind(this.client));
+      });
+
+      it('returns 200 OK', function() {
+        return this.request.spread(function(req, res, body) {
+          assert(res.statusCode, 200);
+        });
+      });
+
+      it('sends data in body', function() {
+        return this.request.spread(function(req, res, body) {
+          assert.equal(body, 'test');
+        });
+      });
+
+      after(function() {
+        return this.createRequest.get(2)
+          .then(this.client.delAsync.bind(this.client));
+      });
+    });
   });
 
   describe('PUT /vault/:id', function() {
