@@ -6,7 +6,7 @@ var Promise = require('bluebird');
 Promise.promisifyAll(crypto);
 
 var ALGORITHM = 'aes256';
-var KEY_SIZE = 256;
+var KEY_SIZE = 32;
 var SALT_SIZE = 16;
 var ITERATIONS = 12000;
 
